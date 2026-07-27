@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
 
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0"
-  />
+  >
 
   <title>ניהול מקומות חניה</title>
 
@@ -17,6 +17,7 @@
 
     :root {
       --navy: #0d2a52;
+      --navy-dark: #071a34;
       --blue: #1677ff;
       --blue-light: #eaf3ff;
       --background: #f4f7fb;
@@ -25,8 +26,12 @@
       --muted: #6d7b91;
       --border: #dce4ef;
       --green: #24965a;
+      --green-light: #e8f7ef;
       --orange: #dd8a16;
+      --orange-light: #fff3df;
       --red: #db4a4a;
+      --red-light: #fdecec;
+      --gray-light: #f2f5f9;
     }
 
     body {
@@ -38,7 +43,8 @@
     }
 
     button,
-    input {
+    input,
+    select {
       font: inherit;
     }
 
@@ -153,7 +159,7 @@
 
     .stats {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(5, 1fr);
       gap: 16px;
       margin-bottom: 20px;
     }
@@ -190,6 +196,10 @@
 
     .red {
       border-top: 4px solid var(--red);
+    }
+
+    .navy {
+      border-top: 4px solid var(--navy);
     }
 
     .panel {
@@ -232,7 +242,7 @@
 
     table {
       width: 100%;
-      min-width: 850px;
+      min-width: 950px;
       border-collapse: collapse;
     }
 
@@ -253,6 +263,119 @@
       height: 120px;
       text-align: center;
       color: #8a96a8;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 22px;
+    }
+
+    .form-field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .form-field label {
+      font-weight: 700;
+    }
+
+    .form-field input,
+    .form-field select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #cfd8e6;
+      border-radius: 9px;
+      background: white;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .primary-button,
+    .secondary-button,
+    .danger-button,
+    .small-button {
+      border: none;
+      border-radius: 9px;
+      font-weight: 700;
+    }
+
+    .primary-button {
+      padding: 12px 18px;
+      background: var(--blue);
+      color: white;
+    }
+
+    .secondary-button {
+      padding: 12px 18px;
+      background: #edf3fb;
+      color: #24476f;
+    }
+
+    .danger-button {
+      padding: 12px 18px;
+      background: var(--red-light);
+      color: #a92d2d;
+    }
+
+    .small-button {
+      padding: 7px 10px;
+      font-size: 13px;
+      background: #edf3fb;
+      color: #24476f;
+    }
+
+    .small-button.blue-button {
+      background: var(--blue-light);
+      color: #1757a6;
+    }
+
+    .small-button.red-button {
+      background: var(--red-light);
+      color: #a92d2d;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .badge.green {
+      border: none;
+      background: var(--green-light);
+      color: #16784a;
+    }
+
+    .badge.red {
+      border: none;
+      background: var(--red-light);
+      color: #af3030;
+    }
+
+    .badge.orange {
+      border: none;
+      background: var(--orange-light);
+      color: #9a6412;
+    }
+
+    .badge.gray {
+      background: #eef2f6;
+      color: #66758b;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
     }
 
     .settings-grid {
@@ -284,16 +407,6 @@
       font-size: 18px;
     }
 
-    .primary-button {
-      margin-top: 20px;
-      padding: 12px 18px;
-      border: none;
-      border-radius: 10px;
-      background: var(--blue);
-      color: white;
-      font-weight: 700;
-    }
-
     .success-message {
       display: none;
       margin-top: 16px;
@@ -307,6 +420,90 @@
 
     .success-message.show {
       display: block;
+    }
+
+    .list {
+      display: grid;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .list-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #fbfcfe;
+    }
+
+    .list-item h3 {
+      margin: 0 0 6px;
+    }
+
+    .list-item p {
+      margin: 3px 0;
+    }
+
+    .upload-box {
+      margin-top: 22px;
+      min-height: 230px;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      border: 2px dashed #9fc6ff;
+      border-radius: 14px;
+      background: #f8fbff;
+      text-align: center;
+    }
+
+    .upload-icon {
+      font-size: 46px;
+      color: var(--blue);
+    }
+
+    .disabled-button {
+      padding: 12px 18px;
+      border: none;
+      border-radius: 9px;
+      background: #e5ebf3;
+      color: #8795a8;
+      cursor: not-allowed;
+    }
+
+    .toast {
+      position: fixed;
+      left: 24px;
+      bottom: 24px;
+      padding: 13px 18px;
+      border-radius: 10px;
+      background: var(--navy);
+      color: white;
+      opacity: 0;
+      transform: translateY(12px);
+      pointer-events: none;
+      transition: 0.25s;
+      z-index: 1000;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1150px) {
+      .stats {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .form-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
     @media (max-width: 950px) {
@@ -347,7 +544,7 @@
       }
     }
 
-    @media (max-width: 620px) {
+    @media (max-width: 650px) {
       .main {
         padding: 14px;
       }
@@ -362,7 +559,8 @@
       }
 
       .stats,
-      .settings-grid {
+      .settings-grid,
+      .form-grid {
         grid-template-columns: 1fr;
       }
 
@@ -373,6 +571,11 @@
 
       .search {
         width: 100%;
+      }
+
+      .list-item {
+        align-items: flex-start;
+        flex-direction: column;
       }
     }
   </style>
@@ -457,35 +660,37 @@
       >
 
         <div class="notice">
-
           <strong>כלל זכאות:</strong>
-
           רק עובדים המשובצים למשמרת
           <strong>צהריים</strong>
           זכאים לחניה בחניון העליון.
-
         </div>
 
         <section class="stats">
 
           <article class="card blue">
             <span>סה״כ עובדים</span>
-            <strong>0</strong>
+            <strong id="totalEmployees">0</strong>
           </article>
 
           <article class="card green">
             <span>זכאים לחניון העליון</span>
-            <strong>0</strong>
+            <strong id="eligibleEmployees">0</strong>
           </article>
 
           <article class="card orange">
-            <span>מקומות פנויים בעליון</span>
+            <span>פנויים בחניון העליון</span>
             <strong id="upperAvailable">20</strong>
           </article>
 
-          <article class="card red">
-            <span>מקומות פנויים בתחתון</span>
+          <article class="card navy">
+            <span>פנויים בחניון התחתון</span>
             <strong id="lowerAvailable">35</strong>
+          </article>
+
+          <article class="card red">
+            <span>רשימת המתנה</span>
+            <strong id="waitingCount">0</strong>
           </article>
 
         </section>
@@ -497,15 +702,16 @@
             <div>
               <h2>רשימת עובדים והקצאות</h2>
               <p>
-                בשלב הבא נוסיף עובדים ונחשב זכאות אוטומטית.
+                הנתונים מתעדכנים אוטומטית לאחר הוספה והקצאה.
               </p>
             </div>
 
             <input
+              id="dashboardSearch"
               class="search"
               type="search"
               placeholder="חיפוש עובד..."
-            />
+            >
 
           </div>
 
@@ -523,19 +729,11 @@
                   <th>חניון</th>
                   <th>מספר מקום</th>
                   <th>סטטוס</th>
+                  <th>פעולות</th>
                 </tr>
               </thead>
 
-              <tbody>
-                <tr>
-                  <td
-                    class="empty-row"
-                    colspan="8"
-                  >
-                    עדיין לא נטענו עובדים למערכת
-                  </td>
-                </tr>
-              </tbody>
+              <tbody id="dashboardTableBody"></tbody>
 
             </table>
 
@@ -549,48 +747,267 @@
         id="upload"
         class="view"
       >
+
         <section class="panel">
+
           <h2>טעינת שיבוץ</h2>
+
           <p>
-            אפשרות טעינת קובץ Excel תתווסף בשלב מאוחר יותר.
+            בשלב הבא נחבר לכאן טעינת קובץ Excel.
           </p>
+
+          <div class="upload-box">
+
+            <div class="upload-icon">⇧</div>
+
+            <strong>
+              טעינת Excel עדיין אינה פעילה
+            </strong>
+
+            <span>
+              כרגע ניתן להזין עובדים ידנית במסך עובדים.
+            </span>
+
+            <button
+              class="disabled-button"
+              disabled
+            >
+              בחר קובץ
+            </button>
+
+          </div>
+
         </section>
+
       </section>
 
       <section
         id="employees"
         class="view"
       >
+
         <section class="panel">
-          <h2>עובדים</h2>
+
+          <h2 id="employeeFormTitle">
+            הוספת עובד
+          </h2>
+
           <p>
-            כאן תוצג רשימת העובדים שנקלטו למערכת.
+            הזן את פרטי העובד ואת המשמרת שאליה הוא משובץ.
           </p>
+
+          <form id="employeeForm">
+
+            <div class="form-grid">
+
+              <div class="form-field">
+                <label for="employeeName">
+                  שם העובד
+                </label>
+
+                <input
+                  id="employeeName"
+                  type="text"
+                  required
+                  placeholder="לדוגמה: דנה כהן"
+                >
+              </div>
+
+              <div class="form-field">
+                <label for="employeeNumber">
+                  מספר עובד
+                </label>
+
+                <input
+                  id="employeeNumber"
+                  type="text"
+                  required
+                  placeholder="לדוגמה: 10372"
+                >
+              </div>
+
+              <div class="form-field">
+                <label for="employeeTeam">
+                  צוות העובד
+                </label>
+
+                <input
+                  id="employeeTeam"
+                  type="text"
+                  required
+                  placeholder="לדוגמה: צוות ב׳"
+                >
+              </div>
+
+              <div class="form-field">
+                <label for="employeeShift">
+                  משמרת
+                </label>
+
+                <select
+                  id="employeeShift"
+                  required
+                >
+                  <option value="בוקר">
+                    בוקר
+                  </option>
+
+                  <option value="ביניים">
+                    ביניים
+                  </option>
+
+                  <option value="צהריים">
+                    צהריים
+                  </option>
+
+                  <option value="ערב">
+                    ערב
+                  </option>
+                </select>
+              </div>
+
+            </div>
+
+            <div class="button-row">
+
+              <button
+                type="submit"
+                class="primary-button"
+              >
+                שמור עובד
+              </button>
+
+              <button
+                id="cancelEditButton"
+                type="button"
+                class="secondary-button"
+                style="display: none;"
+              >
+                ביטול עריכה
+              </button>
+
+            </div>
+
+          </form>
+
         </section>
+
+        <section class="panel">
+
+          <div class="panel-header">
+
+            <div>
+              <h2>רשימת עובדים</h2>
+              <p>
+                ניתן לערוך או למחוק כל עובד.
+              </p>
+            </div>
+
+            <input
+              id="employeeSearch"
+              class="search"
+              type="search"
+              placeholder="חיפוש עובד..."
+            >
+
+          </div>
+
+          <div class="table-wrapper">
+
+            <table>
+
+              <thead>
+                <tr>
+                  <th>שם העובד</th>
+                  <th>מספר עובד</th>
+                  <th>צוות</th>
+                  <th>משמרת</th>
+                  <th>זכאות לעליון</th>
+                  <th>פעולות</th>
+                </tr>
+              </thead>
+
+              <tbody id="employeesTableBody"></tbody>
+
+            </table>
+
+          </div>
+
+        </section>
+
       </section>
 
       <section
         id="allocations"
         class="view"
       >
+
         <section class="panel">
-          <h2>הקצאות</h2>
-          <p>
-            כאן יוצגו מקומות החניה שהוקצו לעובדים.
-          </p>
+
+          <div class="panel-header">
+
+            <div>
+              <h2>הקצאות חניה</h2>
+              <p>
+                ניתן להקצות ידנית או לבצע הקצאה אוטומטית.
+              </p>
+            </div>
+
+            <button
+              id="autoAllocateButton"
+              class="primary-button"
+            >
+              הקצאה אוטומטית
+            </button>
+
+          </div>
+
+          <div class="table-wrapper">
+
+            <table>
+
+              <thead>
+                <tr>
+                  <th>שם העובד</th>
+                  <th>משמרת</th>
+                  <th>זכאות</th>
+                  <th>חניון</th>
+                  <th>מקום</th>
+                  <th>סטטוס</th>
+                  <th>פעולות</th>
+                </tr>
+              </thead>
+
+              <tbody id="allocationsTableBody"></tbody>
+
+            </table>
+
+          </div>
+
         </section>
+
       </section>
 
       <section
         id="waiting"
         class="view"
       >
+
         <section class="panel">
+
           <h2>רשימת המתנה</h2>
+
           <p>
-            עובדים שלא נמצא עבורם מקום יוצגו כאן.
+            עובדים שלא נמצא עבורם מקום חניה יוצגו כאן.
           </p>
+
+          <div
+            id="waitingList"
+            class="list"
+          ></div>
+
         </section>
+
       </section>
 
       <section
@@ -618,8 +1035,7 @@
                 id="upperCapacity"
                 type="number"
                 min="0"
-                value="20"
-              />
+              >
 
             </div>
 
@@ -633,19 +1049,29 @@
                 id="lowerCapacity"
                 type="number"
                 min="0"
-                value="35"
-              />
+              >
 
             </div>
 
           </div>
 
-          <button
-            id="saveSettingsButton"
-            class="primary-button"
-          >
-            שמור הגדרות
-          </button>
+          <div class="button-row">
+
+            <button
+              id="saveSettingsButton"
+              class="primary-button"
+            >
+              שמור הגדרות
+            </button>
+
+            <button
+              id="resetDataButton"
+              class="danger-button"
+            >
+              איפוס כל הנתונים
+            </button>
+
+          </div>
 
           <div
             id="successMessage"
@@ -662,74 +1088,153 @@
 
   </div>
 
+  <div
+    id="toast"
+    class="toast"
+  ></div>
+
   <script>
-    const STORAGE_KEY = "parkingManagementSettings";
+    const STORAGE_KEY = "parkingManagementAppData";
 
-    const menuButtons =
-      document.querySelectorAll(".menu-button");
+    const defaultData = {
+      settings: {
+        upperCapacity: 20,
+        lowerCapacity: 35
+      },
+      employees: []
+    };
 
-    const views =
-      document.querySelectorAll(".view");
+    let appData = loadData();
 
-    const upperCapacityInput =
-      document.getElementById("upperCapacity");
+    let editingEmployeeId = null;
 
-    const lowerCapacityInput =
-      document.getElementById("lowerCapacity");
-
-    const upperAvailable =
-      document.getElementById("upperAvailable");
-
-    const lowerAvailable =
-      document.getElementById("lowerAvailable");
-
-    const saveSettingsButton =
-      document.getElementById("saveSettingsButton");
-
-    const successMessage =
-      document.getElementById("successMessage");
-
-    function loadSettings() {
+    function loadData() {
       const savedData =
         localStorage.getItem(STORAGE_KEY);
 
       if (!savedData) {
-        updateDashboard();
-        return;
+        return JSON.parse(
+          JSON.stringify(defaultData)
+        );
       }
 
       try {
-        const settings =
-          JSON.parse(savedData);
-
-        upperCapacityInput.value =
-          settings.upperCapacity ?? 20;
-
-        lowerCapacityInput.value =
-          settings.lowerCapacity ?? 35;
-
-        updateDashboard();
+        return JSON.parse(savedData);
       } catch (error) {
-        updateDashboard();
+        return JSON.parse(
+          JSON.stringify(defaultData)
+        );
       }
     }
 
-    function updateDashboard() {
-      upperAvailable.textContent =
-        upperCapacityInput.value || 0;
+    function saveData() {
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(appData)
+      );
+    }
 
-      lowerAvailable.textContent =
-        lowerCapacityInput.value || 0;
+    function createId() {
+      return (
+        Date.now().toString() +
+        Math.random().toString(16).slice(2)
+      );
+    }
+
+    function isEligible(employee) {
+      return employee.shift === "צהריים";
+    }
+
+    function getCapacity(lot) {
+      if (lot === "עליון") {
+        return Number(
+          appData.settings.upperCapacity
+        );
+      }
+
+      return Number(
+        appData.settings.lowerCapacity
+      );
+    }
+
+    function getUsedSpots(lot) {
+      return appData.employees.filter(
+        function(employee) {
+          return (
+            employee.lot === lot &&
+            employee.spot !== ""
+          );
+        }
+      ).length;
+    }
+
+    function getAvailableCount(lot) {
+      return Math.max(
+        0,
+        getCapacity(lot) - getUsedSpots(lot)
+      );
+    }
+
+    function getNextAvailableSpot(lot) {
+      const capacity = getCapacity(lot);
+
+      const usedSpots = new Set(
+        appData.employees
+          .filter(function(employee) {
+            return employee.lot === lot;
+          })
+          .map(function(employee) {
+            return Number(employee.spot);
+          })
+      );
+
+      for (
+        let spot = 1;
+        spot <= capacity;
+        spot++
+      ) {
+        if (!usedSpots.has(spot)) {
+          return spot;
+        }
+      }
+
+      return null;
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function showToast(message) {
+      const toast =
+        document.getElementById("toast");
+
+      toast.textContent = message;
+
+      toast.classList.add("show");
+
+      setTimeout(function() {
+        toast.classList.remove("show");
+      }, 2500);
     }
 
     function showView(viewId) {
-      views.forEach(function(view) {
-        view.classList.remove("active");
-      });
+      document
+        .querySelectorAll(".view")
+        .forEach(function(view) {
+          view.classList.remove("active");
+        });
 
-      menuButtons.forEach(function(button) {
-        button.classList.remove("active");
-      });
+      document
+        .querySelectorAll(".menu-button")
+        .forEach(function(button) {
+          button.classList.remove("active");
+        });
 
       const selectedView =
         document.getElementById(viewId);
@@ -746,58 +1251,992 @@
       if (selectedButton) {
         selectedButton.classList.add("active");
       }
+
+      renderAll();
     }
 
-    menuButtons.forEach(function(button) {
-      button.addEventListener(
-        "click",
-        function() {
-          showView(button.dataset.view);
-        }
+    function renderStatistics() {
+      const totalEmployees =
+        appData.employees.length;
+
+      const eligibleEmployees =
+        appData.employees.filter(
+          isEligible
+        ).length;
+
+      const waitingEmployees =
+        appData.employees.filter(
+          function(employee) {
+            return employee.status === "waiting";
+          }
+        ).length;
+
+      document.getElementById(
+        "totalEmployees"
+      ).textContent = totalEmployees;
+
+      document.getElementById(
+        "eligibleEmployees"
+      ).textContent = eligibleEmployees;
+
+      document.getElementById(
+        "upperAvailable"
+      ).textContent =
+        getAvailableCount("עליון");
+
+      document.getElementById(
+        "lowerAvailable"
+      ).textContent =
+        getAvailableCount("תחתון");
+
+      document.getElementById(
+        "waitingCount"
+      ).textContent = waitingEmployees;
+    }
+
+    function getStatusBadge(employee) {
+      if (employee.status === "allocated") {
+        return (
+          '<span class="badge green">' +
+          "הוקצה" +
+          "</span>"
+        );
+      }
+
+      if (employee.status === "waiting") {
+        return (
+          '<span class="badge orange">' +
+          "רשימת המתנה" +
+          "</span>"
+        );
+      }
+
+      return (
+        '<span class="badge gray">' +
+        "טרם הוקצה" +
+        "</span>"
       );
-    });
+    }
 
-    saveSettingsButton.addEventListener(
-      "click",
-      function() {
-        const upperCapacity =
-          Number(upperCapacityInput.value);
+    function getEligibilityBadge(employee) {
+      if (isEligible(employee)) {
+        return (
+          '<span class="badge green">' +
+          "זכאי לעליון" +
+          "</span>"
+        );
+      }
 
-        const lowerCapacity =
-          Number(lowerCapacityInput.value);
+      return (
+        '<span class="badge red">' +
+        "לא זכאי לעליון" +
+        "</span>"
+      );
+    }
 
-        if (
-          upperCapacity < 0 ||
-          lowerCapacity < 0
-        ) {
-          alert(
-            "כמות מקומות החניה אינה יכולה להיות שלילית"
-          );
+    function renderDashboardTable() {
+      const searchValue =
+        document
+          .getElementById(
+            "dashboardSearch"
+          )
+          .value
+          .trim()
+          .toLowerCase();
 
-          return;
-        }
-
-        const settings = {
-          upperCapacity,
-          lowerCapacity
-        };
-
-        localStorage.setItem(
-          STORAGE_KEY,
-          JSON.stringify(settings)
+      const employees =
+        appData.employees.filter(
+          function(employee) {
+            return [
+              employee.name,
+              employee.number,
+              employee.team,
+              employee.shift
+            ].some(function(value) {
+              return String(value)
+                .toLowerCase()
+                .includes(searchValue);
+            });
+          }
         );
 
-        updateDashboard();
+      const tableBody =
+        document.getElementById(
+          "dashboardTableBody"
+        );
 
-        successMessage.classList.add("show");
+      if (employees.length === 0) {
+        tableBody.innerHTML = `
+          <tr>
+            <td
+              colspan="9"
+              class="empty-row"
+            >
+              עדיין לא נוספו עובדים למערכת
+            </td>
+          </tr>
+        `;
 
-        setTimeout(function() {
-          successMessage.classList.remove("show");
-        }, 2500);
+        return;
       }
-    );
 
-    loadSettings();
+      tableBody.innerHTML =
+        employees
+          .map(function(employee) {
+            return `
+              <tr>
+                <td>
+                  <strong>
+                    ${escapeHtml(employee.name)}
+                  </strong>
+                </td>
+
+                <td>
+                  ${escapeHtml(employee.number)}
+                </td>
+
+                <td>
+                  ${escapeHtml(employee.team)}
+                </td>
+
+                <td>
+                  ${escapeHtml(employee.shift)}
+                </td>
+
+                <td>
+                  ${getEligibilityBadge(employee)}
+                </td>
+
+                <td>
+                  ${employee.lot || "—"}
+                </td>
+
+                <td>
+                  ${employee.spot || "—"}
+                </td>
+
+                <td>
+                  ${getStatusBadge(employee)}
+                </td>
+
+                <td>
+                  <div class="actions">
+
+                    <button
+                      class="small-button blue-button"
+                      onclick="allocateEmployee(
+                        '${employee.id}'
+                      )"
+                    >
+                      הקצה
+                    </button>
+
+                    <button
+                      class="small-button"
+                      onclick="clearAllocation(
+                        '${employee.id}'
+                      )"
+                    >
+                      בטל
+                    </button>
+
+                  </div>
+                </td>
+              </tr>
+            `;
+          })
+          .join("");
+    }
+
+    function renderEmployeesTable() {
+      const searchValue =
+        document
+          .getElementById(
+            "employeeSearch"
+          )
+          .value
+          .trim()
+          .toLowerCase();
+
+      const employees =
+        appData.employees.filter(
+          function(employee) {
+            return [
+              employee.name,
+              employee.number,
+              employee.team,
+              employee.shift
+            ].some(function(value) {
+              return String(value)
+                .toLowerCase()
+                .includes(searchValue);
+            });
+          }
+        );
+
+      const tableBody =
+        document.getElementById(
+          "employeesTableBody"
+        );
+
+      if (employees.length === 0) {
+        tableBody.innerHTML = `
+          <tr>
+            <td
+              colspan="6"
+              class="empty-row"
+            >
+              לא נמצאו עובדים
+            </td>
+          </tr>
+        `;
+
+        return;
+      }
+
+      tableBody.innerHTML =
+        employees
+          .map(function(employee) {
+            return `
+              <tr>
+
+                <td>
+                  <strong>
+                    ${escapeHtml(employee.name)}
+                  </strong>
+                </td>
+
+                <td>
+                  ${escapeHtml(employee.number)}
+                </td>
+
+                <td>
+                  ${escapeHtml(employee.team)}
+                </td>
+
+                <td>
+                  ${escapeHtml(employee.shift)}
+                </td>
+
+                <td>
+                  ${getEligibilityBadge(employee)}
+                </td>
+
+                <td>
+                  <div class="actions">
+
+                    <button
+                      class="small-button blue-button"
+                      onclick="editEmployee(
+                        '${employee.id}'
+                      )"
+                    >
+                      ערוך
+                    </button>
+
+                    <button
+                      class="small-button red-button"
+                      onclick="deleteEmployee(
+                        '${employee.id}'
+                      )"
+                    >
+                      מחק
+                    </button>
+
+                  </div>
+                </td>
+
+              </tr>
+            `;
+          })
+          .join("");
+    }
+
+    function renderAllocationsTable() {
+      const tableBody =
+        document.getElementById(
+          "allocationsTableBody"
+        );
+
+      if (appData.employees.length === 0) {
+        tableBody.innerHTML = `
+          <tr>
+            <td
+              colspan="7"
+              class="empty-row"
+            >
+              לא קיימים עובדים להקצאה
+            </td>
+          </tr>
+        `;
+
+        return;
+      }
+
+      tableBody.innerHTML =
+        appData.employees
+          .map(function(employee) {
+            return `
+              <tr>
+
+                <td>
+                  <strong>
+                    ${escapeHtml(employee.name)}
+                  </strong>
+                </td>
+
+                <td>
+                  ${escapeHtml(employee.shift)}
+                </td>
+
+                <td>
+                  ${getEligibilityBadge(employee)}
+                </td>
+
+                <td>
+                  ${employee.lot || "—"}
+                </td>
+
+                <td>
+                  ${employee.spot || "—"}
+                </td>
+
+                <td>
+                  ${getStatusBadge(employee)}
+                </td>
+
+                <td>
+                  <div class="actions">
+
+                    <button
+                      class="small-button blue-button"
+                      onclick="allocateEmployee(
+                        '${employee.id}'
+                      )"
+                    >
+                      הקצה
+                    </button>
+
+                    <button
+                      class="small-button"
+                      onclick="clearAllocation(
+                        '${employee.id}'
+                      )"
+                    >
+                      בטל הקצאה
+                    </button>
+
+                  </div>
+                </td>
+
+              </tr>
+            `;
+          })
+          .join("");
+    }
+
+    function renderWaitingList() {
+      const waitingEmployees =
+        appData.employees.filter(
+          function(employee) {
+            return employee.status === "waiting";
+          }
+        );
+
+      const waitingList =
+        document.getElementById(
+          "waitingList"
+        );
+
+      if (waitingEmployees.length === 0) {
+        waitingList.innerHTML = `
+          <div class="list-item">
+            <div>
+              <h3>
+                אין עובדים ברשימת המתנה
+              </h3>
+
+              <p>
+                כאשר חניון יהיה מלא,
+                העובד יופיע כאן.
+              </p>
+            </div>
+          </div>
+        `;
+
+        return;
+      }
+
+      waitingList.innerHTML =
+        waitingEmployees
+          .map(function(employee) {
+            return `
+              <div class="list-item">
+
+                <div>
+                  <h3>
+                    ${escapeHtml(employee.name)}
+                  </h3>
+
+                  <p>
+                    מספר עובד:
+                    ${escapeHtml(employee.number)}
+                  </p>
+
+                  <p>
+                    משמרת:
+                    ${escapeHtml(employee.shift)}
+                  </p>
+                </div>
+
+                <button
+                  class="small-button blue-button"
+                  onclick="allocateEmployee(
+                    '${employee.id}'
+                  )"
+                >
+                  נסה להקצות שוב
+                </button>
+
+              </div>
+            `;
+          })
+          .join("");
+    }
+
+    function renderSettings() {
+      document.getElementById(
+        "upperCapacity"
+      ).value =
+        appData.settings.upperCapacity;
+
+      document.getElementById(
+        "lowerCapacity"
+      ).value =
+        appData.settings.lowerCapacity;
+    }
+
+    function renderAll() {
+      renderStatistics();
+      renderDashboardTable();
+      renderEmployeesTable();
+      renderAllocationsTable();
+      renderWaitingList();
+      renderSettings();
+    }
+
+    function resetEmployeeForm() {
+      editingEmployeeId = null;
+
+      document
+        .getElementById("employeeForm")
+        .reset();
+
+      document.getElementById(
+        "employeeFormTitle"
+      ).textContent =
+        "הוספת עובד";
+
+      document.getElementById(
+        "cancelEditButton"
+      ).style.display =
+        "none";
+    }
+
+    function editEmployee(employeeId) {
+      const employee =
+        appData.employees.find(
+          function(item) {
+            return item.id === employeeId;
+          }
+        );
+
+      if (!employee) {
+        return;
+      }
+
+      editingEmployeeId = employeeId;
+
+      document.getElementById(
+        "employeeName"
+      ).value =
+        employee.name;
+
+      document.getElementById(
+        "employeeNumber"
+      ).value =
+        employee.number;
+
+      document.getElementById(
+        "employeeTeam"
+      ).value =
+        employee.team;
+
+      document.getElementById(
+        "employeeShift"
+      ).value =
+        employee.shift;
+
+      document.getElementById(
+        "employeeFormTitle"
+      ).textContent =
+        "עריכת עובד";
+
+      document.getElementById(
+        "cancelEditButton"
+      ).style.display =
+        "inline-block";
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    }
+
+    function deleteEmployee(employeeId) {
+      const employee =
+        appData.employees.find(
+          function(item) {
+            return item.id === employeeId;
+          }
+        );
+
+      if (!employee) {
+        return;
+      }
+
+      const approved = confirm(
+        "האם למחוק את העובד " +
+        employee.name +
+        "?"
+      );
+
+      if (!approved) {
+        return;
+      }
+
+      appData.employees =
+        appData.employees.filter(
+          function(item) {
+            return item.id !== employeeId;
+          }
+        );
+
+      saveData();
+      renderAll();
+
+      showToast(
+        "העובד נמחק מהמערכת"
+      );
+    }
+
+    function allocateEmployee(employeeId) {
+      const employee =
+        appData.employees.find(
+          function(item) {
+            return item.id === employeeId;
+          }
+        );
+
+      if (!employee) {
+        return;
+      }
+
+      if (employee.status === "allocated") {
+        showToast(
+          "לעובד כבר הוקצה מקום חניה"
+        );
+
+        return;
+      }
+
+      const lot =
+        isEligible(employee)
+          ? "עליון"
+          : "תחתון";
+
+      const availableSpot =
+        getNextAvailableSpot(lot);
+
+      if (availableSpot === null) {
+        employee.lot = "";
+        employee.spot = "";
+        employee.status = "waiting";
+
+        saveData();
+        renderAll();
+
+        showToast(
+          "החניון מלא והעובד הועבר לרשימת המתנה"
+        );
+
+        return;
+      }
+
+      employee.lot = lot;
+      employee.spot = availableSpot;
+      employee.status = "allocated";
+
+      saveData();
+      renderAll();
+
+      showToast(
+        "הוקצה חניון " +
+        lot +
+        ", מקום " +
+        availableSpot
+      );
+    }
+
+    function clearAllocation(employeeId) {
+      const employee =
+        appData.employees.find(
+          function(item) {
+            return item.id === employeeId;
+          }
+        );
+
+      if (!employee) {
+        return;
+      }
+
+      employee.lot = "";
+      employee.spot = "";
+      employee.status = "pending";
+
+      saveData();
+      renderAll();
+
+      showToast(
+        "הקצאת החניה בוטלה"
+      );
+    }
+
+    function autoAllocate() {
+      appData.employees.forEach(
+        function(employee) {
+          if (
+            employee.status === "allocated"
+          ) {
+            return;
+          }
+
+          const lot =
+            isEligible(employee)
+              ? "עליון"
+              : "תחתון";
+
+          const availableSpot =
+            getNextAvailableSpot(lot);
+
+          if (availableSpot === null) {
+            employee.lot = "";
+            employee.spot = "";
+            employee.status = "waiting";
+          } else {
+            employee.lot = lot;
+            employee.spot = availableSpot;
+            employee.status = "allocated";
+          }
+        }
+      );
+
+      saveData();
+      renderAll();
+
+      showToast(
+        "ההקצאה האוטומטית הושלמה"
+      );
+    }
+
+    document
+      .querySelectorAll(".menu-button")
+      .forEach(function(button) {
+        button.addEventListener(
+          "click",
+          function() {
+            showView(
+              button.dataset.view
+            );
+          }
+        );
+      });
+
+    document
+      .getElementById(
+        "employeeForm"
+      )
+      .addEventListener(
+        "submit",
+        function(event) {
+          event.preventDefault();
+
+          const name =
+            document
+              .getElementById(
+                "employeeName"
+              )
+              .value
+              .trim();
+
+          const number =
+            document
+              .getElementById(
+                "employeeNumber"
+              )
+              .value
+              .trim();
+
+          const team =
+            document
+              .getElementById(
+                "employeeTeam"
+              )
+              .value
+              .trim();
+
+          const shift =
+            document
+              .getElementById(
+                "employeeShift"
+              )
+              .value;
+
+          const duplicateEmployee =
+            appData.employees.find(
+              function(employee) {
+                return (
+                  employee.number === number &&
+                  employee.id !== editingEmployeeId
+                );
+              }
+            );
+
+          if (duplicateEmployee) {
+            alert(
+              "מספר העובד כבר קיים במערכת"
+            );
+
+            return;
+          }
+
+          if (editingEmployeeId) {
+            const employee =
+              appData.employees.find(
+                function(item) {
+                  return (
+                    item.id ===
+                    editingEmployeeId
+                  );
+                }
+              );
+
+            if (employee) {
+              employee.name = name;
+              employee.number = number;
+              employee.team = team;
+              employee.shift = shift;
+
+              if (
+                employee.status ===
+                "allocated"
+              ) {
+                employee.lot = "";
+                employee.spot = "";
+                employee.status = "pending";
+              }
+            }
+
+            showToast(
+              "פרטי העובד עודכנו"
+            );
+          } else {
+            appData.employees.push({
+              id: createId(),
+              name: name,
+              number: number,
+              team: team,
+              shift: shift,
+              lot: "",
+              spot: "",
+              status: "pending"
+            });
+
+            showToast(
+              "העובד נוסף למערכת"
+            );
+          }
+
+          saveData();
+          resetEmployeeForm();
+          renderAll();
+        }
+      );
+
+    document
+      .getElementById(
+        "cancelEditButton"
+      )
+      .addEventListener(
+        "click",
+        function() {
+          resetEmployeeForm();
+        }
+      );
+
+    document
+      .getElementById(
+        "dashboardSearch"
+      )
+      .addEventListener(
+        "input",
+        renderDashboardTable
+      );
+
+    document
+      .getElementById(
+        "employeeSearch"
+      )
+      .addEventListener(
+        "input",
+        renderEmployeesTable
+      );
+
+    document
+      .getElementById(
+        "autoAllocateButton"
+      )
+      .addEventListener(
+        "click",
+        autoAllocate
+      );
+
+    document
+      .getElementById(
+        "saveSettingsButton"
+      )
+      .addEventListener(
+        "click",
+        function() {
+          const upperCapacity =
+            Number(
+              document.getElementById(
+                "upperCapacity"
+              ).value
+            );
+
+          const lowerCapacity =
+            Number(
+              document.getElementById(
+                "lowerCapacity"
+              ).value
+            );
+
+          if (
+            upperCapacity < 0 ||
+            lowerCapacity < 0
+          ) {
+            alert(
+              "כמות המקומות אינה יכולה להיות שלילית"
+            );
+
+            return;
+          }
+
+          if (
+            upperCapacity <
+            getUsedSpots("עליון")
+          ) {
+            alert(
+              "לא ניתן להקטין את החניון העליון מתחת למספר המקומות שכבר הוקצו"
+            );
+
+            return;
+          }
+
+          if (
+            lowerCapacity <
+            getUsedSpots("תחתון")
+          ) {
+            alert(
+              "לא ניתן להקטין את החניון התחתון מתחת למספר המקומות שכבר הוקצו"
+            );
+
+            return;
+          }
+
+          appData.settings.upperCapacity =
+            upperCapacity;
+
+          appData.settings.lowerCapacity =
+            lowerCapacity;
+
+          saveData();
+          renderAll();
+
+          const successMessage =
+            document.getElementById(
+              "successMessage"
+            );
+
+          successMessage.classList.add(
+            "show"
+          );
+
+          setTimeout(function() {
+            successMessage.classList.remove(
+              "show"
+            );
+          }, 2500);
+
+          showToast(
+            "הגדרות החניונים נשמרו"
+          );
+        }
+      );
+
+    document
+      .getElementById(
+        "resetDataButton"
+      )
+      .addEventListener(
+        "click",
+        function() {
+          const approved = confirm(
+            "האם לאפס את כל העובדים, ההקצאות וההגדרות?"
+          );
+
+          if (!approved) {
+            return;
+          }
+
+          appData = JSON.parse(
+            JSON.stringify(defaultData)
+          );
+
+          saveData();
+          resetEmployeeForm();
+          renderAll();
+
+          showToast(
+            "כל הנתונים אופסו"
+          );
+        }
+      );
+
+    window.editEmployee =
+      editEmployee;
+
+    window.deleteEmployee =
+      deleteEmployee;
+
+    window.allocateEmployee =
+      allocateEmployee;
+
+    window.clearAllocation =
+      clearAllocation;
+
+    renderAll();
   </script>
 
 </body>
