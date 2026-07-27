@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>ניהול מקומות חניה</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: #f4f7fb;
+      color: #17243a;
+    }
+
+    .app {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 230px 1fr;
+    }
+
+    .sidebar {
+      min-height: 100vh;
+      padding: 24px 18px;
+      background: linear-gradient(
+        180deg,
+        #102b54,
+        #081a35
+      );
+      color: white;
+    }
+
+    .logo {
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 14px;
+      border: 3px solid white;
+      border-radius: 15px;
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+    .sidebar h2 {
+      margin: 0 0 30px;
+      font-size: 22px;
+    }
+
+    .menu {
+      display: grid;
+      gap: 10px;
+    }
+
+    .menu-button {
+      width: 100%;
+      padding: 13px 14px;
+      border: none;
+      border-radius: 10px;
+      background: transparent;
+      color: #dce8ff;
+      text-align: right;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .menu-button:hover,
+    .menu-button.active {
+      background: #0d6efd;
+      color: white;
+    }
+
+    .main {
+      padding: 28px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .topbar h1 {
+      margin: 0 0 7px;
+      font-size: 32px;
+    }
+
+    .topbar p {
+      margin: 0;
+      color: #69778c;
+    }
+
+    .date-box {
+      padding: 12px 16px;
+      border: 1px solid #dbe3ef;
+      border-radius: 10px;
+      background: white;
+      color: #38506f;
+      font-weight: bold;
+    }
+
+    .notice {
+      margin-bottom: 20px;
+      padding: 15px 18px;
+      border: 1px solid #b9d7ff;
+      border-radius: 12px;
+      background: #eaf3ff;
+      color: #184b88;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      padding: 22px;
+      border: 1px solid #dfe6f0;
+      border-radius: 15px;
+      background: white;
+      box-shadow: 0 5px 16px rgba(18, 42, 79, 0.05);
+    }
+
+    .card span {
+      display: block;
+      margin-bottom: 12px;
+      color: #69778c;
+    }
+
+    .card strong {
+      font-size: 30px;
+    }
+
+    .blue {
+      border-top: 4px solid #0d6efd;
+    }
+
+    .green {
+      border-top: 4px solid #1f9d61;
+    }
+
+    .orange {
+      border-top: 4px solid #d8891c;
+    }
+
+    .red {
+      border-top: 4px solid #d64545;
+    }
+
+    .panel {
+      padding: 22px;
+      border: 1px solid #dfe6f0;
+      border-radius: 15px;
+      background: white;
+      box-shadow: 0 5px 16px rgba(18, 42, 79, 0.05);
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .panel-header h2 {
+      margin: 0 0 6px;
+    }
+
+    .panel-header p {
+      margin: 0;
+      color: #69778c;
+    }
+
+    .search {
+      width: 260px;
+      padding: 11px 12px;
+      border: 1px solid #cfd8e6;
+      border-radius: 9px;
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      min-width: 850px;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 14px 10px;
+      border-bottom: 1px solid #e7edf5;
+      text-align: right;
+    }
+
+    th {
+      background: #f9fbfd;
+      color: #506078;
+      font-size: 14px;
+    }
+
+    .empty-row {
+      height: 120px;
+      text-align: center;
+      color: #8a96a8;
+    }
+
+    @media (max-width: 950px) {
+      .app {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        min-height: auto;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        overflow-x: auto;
+        padding: 14px;
+      }
+
+      .sidebar h2 {
+        display: none;
+      }
+
+      .logo {
+        width: 42px;
+        height: 42px;
+        flex: 0 0 auto;
+        margin: 0;
+      }
+
+      .menu {
+        display: flex;
+      }
+
+      .menu-button {
+        white-space: nowrap;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 620px) {
+      .main {
+        padding: 14px;
+      }
+
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .topbar h1 {
+        font-size: 25px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .panel-header {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .search {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="app">
+
+    <aside class="sidebar">
+
+      <div class="logo">P</div>
+
+      <h2>ניהול חניה</h2>
+
+      <nav class="menu">
+
+        <button class="menu-button active">
+          לוח בקרה
+        </button>
+
+        <button class="menu-button">
+          טעינת שיבוץ
+        </button>
+
+        <button class="menu-button">
+          עובדים
+        </button>
+
+        <button class="menu-button">
+          הקצאות
+        </button>
+
+        <button class="menu-button">
+          רשימת המתנה
+        </button>
+
+        <button class="menu-button">
+          הגדרות
+        </button>
+
+      </nav>
+
+    </aside>
+
+    <main class="main">
+
+      <header class="topbar">
+
+        <div>
+          <h1>אפליקציית ניהול מקומות חניה</h1>
+          <p>
+            ניהול זכאות והקצאת מקומות חניה לעובדים
+          </p>
+        </div>
+
+        <div class="date-box">
+          שיבוץ נוכחי
+        </div>
+
+      </header>
+
+      <section class="notice">
+
+        <strong>כלל זכאות:</strong>
+
+        רק עובדים המשובצים למשמרת
+        <strong>צהריים</strong>
+        זכאים לחניה בחניון העליון.
+
+      </section>
+
+      <section class="stats">
+
+        <article class="card blue">
+          <span>סה״כ עובדים</span>
+          <strong>0</strong>
+        </article>
+
+        <article class="card green">
+          <span>זכאים לחניון העליון</span>
+          <strong>0</strong>
+        </article>
+
+        <article class="card orange">
+          <span>מקומות פנויים בעליון</span>
+          <strong>0</strong>
+        </article>
+
+        <article class="card red">
+          <span>רשימת המתנה</span>
+          <strong>0</strong>
+        </article>
+
+      </section>
+
+      <section class="panel">
+
+        <div class="panel-header">
+
+          <div>
+            <h2>רשימת עובדים והקצאות</h2>
+            <p>
+              בשלב הבא נוסיף עובדים ונחשב זכאות אוטומטית.
+            </p>
+          </div>
+
+          <input
+            class="search"
+            type="search"
+            placeholder="חיפוש עובד..."
+          >
+
+        </div>
+
+        <div class="table-wrapper">
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>שם העובד</th>
+                <th>מספר עובד</th>
+                <th>צוות</th>
+                <th>משמרת</th>
+                <th>זכאות</th>
+                <th>חניון</th>
+                <th>מספר מקום</th>
+                <th>סטטוס</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <tr>
+                <td
+                  class="empty-row"
+                  colspan="8"
+                >
+                  עדיין לא נטענו עובדים למערכת
+                </td>
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+</body>
+</html>
